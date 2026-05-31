@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAJPUR NIGHT PREMIER LEAGUE · SEASON 2026</title>
+  <meta name="description" content="Official live cricket auction management system for Rajpur Night Premier League 2026.">
+  
+  <!-- Import Rajdhani Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="body-container" class="tournament-bg">
+
+  <!-- ==========================================================
+       GLOBAL TOP NAV BAR (always visible, handles screen route changes)
+       ========================================================== -->
+  <header id="global-nav" class="top-nav">
+    <div class="top-nav-left" onclick="navigateTo('tournament')">RNPL</div>
+    <nav class="top-nav-links">
+      <button class="top-nav-link" id="navlink-tournament" onclick="navigateTo('tournament')">HOME</button>
+      <button class="top-nav-link" id="navlink-landing" onclick="navigateTo('landing')">TEAMS</button>
+      <button class="top-nav-link" id="navlink-auction" onclick="navigateTo('auction')">LIVE AUCTION</button>
+      <button class="top-nav-link" id="navlink-dashboard" onclick="navigateTo('dashboard')">DASHBOARD</button>
+      <button class="top-nav-link" id="navlink-admin" onclick="navigateTo('admin')">ADMIN PANEL</button>
+    </nav>
+  </header>
+
+  <!-- ==========================================================
+       SCREEN 1: TOURNAMENT INFORMATION PAGE (VERY FIRST PAGE SHOWN)
+       ========================================================== -->
+  <div id="screen-tournament" class="screen" style="display: block;">
+    <div class="tournament-content">
+      
+      <!-- Hero Header -->
+      <div class="hero-section">
+        <div class="label-pill">🏏 OFFICIAL AUCTION · SEASON 2026</div>
+        <h1 class="main-title-top">RAJPUR NIGHT</h1>
+        <h1 class="main-title-bottom">PREMIER LEAGUE</h1>
+        <div class="hero-subtitle">THE ULTIMATE FANTASY CRICKET AUCTION EXPERIENCE</div>
+        <div class="gold-glow-divider"></div>
+      </div>
+
+      <!-- 4 Glassmorphism Stat Cards -->
+      <div class="stat-cards-row">
+        <div class="stat-card-glass">
+          <div class="stat-card-val">8</div>
+          <div class="stat-card-lbl">TEAMS</div>
+        </div>
+        <div class="stat-card-glass">
+          <div class="stat-card-val" id="tourney-total-players-lbl">69</div>
+          <div class="stat-card-lbl">PLAYERS</div>
+        </div>
+        <div class="stat-card-glass">
+          <div class="stat-card-val">1,00,000</div>
+          <div class="stat-card-lbl">POINTS BUDGET</div>
+        </div>
+        <div class="stat-card-glass">
+          <div class="stat-card-val">2,000</div>
+          <div class="stat-card-lbl">BASE PRICE (PTS)</div>
+        </div>
+      </div>
+
+      <!-- Details & Participating Grid -->
+      <div class="two-col-details-grid">
+        <!-- Left: Tournament Details -->
+        <div class="details-card">
+          <h3 class="details-card-title">TOURNAMENT DETAILS</h3>
+          <div class="info-row">
+            <span class="info-lbl">Tournament Name</span>
+            <span class="info-val">RAJPUR NIGHT PREMIER LEAGUE</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Season</span>
+            <span class="info-val">2026</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Format</span>
+            <span class="info-val">T20 FANTASY AUCTION</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Total Teams</span>
+            <span class="info-val">8 TEAMS</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Total Players</span>
+            <span class="info-val">69 PLAYERS</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Budget Per Team</span>
+            <span class="info-val">1,00,000 POINTS</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Player Base Price</span>
+            <span class="info-val">2,000 POINTS</span>
+          </div>
+          <div class="info-row">
+            <span class="info-lbl">Auction Type</span>
+            <span class="info-val">LIVE MANUAL AUCTION WITH DIGITAL DRAW</span>
+          </div>
+        </div>
+
+        <!-- Right: Participating Teams -->
+        <div class="details-card">
+          <h3 class="details-card-title">PARTICIPATING TEAMS</h3>
+          <div id="tournament-teams-list">
+            <!-- Generated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Enter Live Button -->
+      <div class="enter-btn-container">
+        <button class="btn-enter-auction" id="btn-enter-auction-trigger" onclick="navigateTo('landing')">ENTER LIVE AUCTION →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       SCREEN 2: LANDING PAGE
+       ========================================================== -->
+  <main id="screen-landing" class="screen" style="display: none;">
+    <div class="landing-hero">
+      <h1 class="hero-title">RAJPUR NIGHT PREMIER LEAGUE</h1>
+      <div class="hero-subtitle">SEASON 2026</div>
+      
+      <div class="stat-pills-row">
+        <div class="stat-pill">8 TEAMS</div>
+        <div class="stat-pill">69 PLAYERS</div>
+        <div class="stat-pill">1,00,000 POINTS BUDGET</div>
+        <div class="stat-pill">2,000 POINTS BASE PRICE</div>
+      </div>
+
+      <div class="landing-buttons">
+        <button class="btn-landing-action btn-landing-gold" onclick="navigateTo('auction')">LIVE AUCTION →</button>
+        <button class="btn-landing-action btn-landing-outline" onclick="navigateTo('dashboard')">OWNER DASHBOARD</button>
+        <button class="btn-landing-action btn-landing-muted" onclick="navigateTo('admin')">ADMIN PANEL</button>
+      </div>
+    </div>
+
+    <!-- Franchises Grid -->
+    <div class="landing-teams-grid" id="landing-teams-list">
+      <!-- Generated dynamically by JS -->
+    </div>
+  </main>
+
+  <!-- ==========================================================
+       SCREEN 3: LIVE AUCTION ROOM
+       ========================================================== -->
+  <div id="screen-auction" class="screen" style="display: none;">
+    <!-- Tab switcher: [ LIVE BIDDING ] [ SQUADS VIEW ] [ PLAYERS POOL ] -->
+    <div class="auction-tab-switcher">
+      <button class="auction-tab-btn" id="btn-tab-live" onclick="switchAuctionTab('live')">LIVE BIDDING</button>
+      <button class="auction-tab-btn" id="btn-tab-squads" onclick="switchAuctionTab('squads')">SQUADS VIEW</button>
+      <button class="auction-tab-btn" id="btn-tab-pool" onclick="switchAuctionTab('pool')">PLAYERS POOL</button>
+    </div>
+
+    <!-- ── TAB: LIVE BIDDING ── -->
+    <div id="auction-tab-content-live" class="auction-tab-panel" style="display: none;">
+      <div class="auction-layout-grid">
+        
+        <!-- Left Main Column (68%) -->
+        <div class="auction-left-col">
+          
+          <!-- 1. DIGITAL PLAYER DRAW PANEL -->
+          <div class="draw-panel">
+            <div class="draw-title-row">
+              <span class="draw-title">🎰 DIGITAL PLAYER DRAW</span>
+              <span class="draw-subtitle">Replaces physical paper chits completely</span>
+            </div>
+
+            <div class="draw-controls-row">
+              <!-- Control 1: Draw Available Player -->
+              <div class="draw-control-box">
+                <span class="draw-lbl">DRAW FROM POOL</span>
+                <button class="btn-draw-main" id="btn-draw-available" onclick="startDrawFromPool('available')">🎲 DRAW PLAYER</button>
+              </div>
+
+              <!-- Control 2: Draw From Unsold -->
+              <div class="draw-control-box">
+                <span class="draw-lbl">DRAW FROM UNSOLD</span>
+                <button class="btn-draw-unsold" id="btn-draw-unsold" onclick="startDrawFromPool('unsold')">🎲 DRAW FROM UNSOLD</button>
+              </div>
+
+              <!-- Control 3: Manual Player Selector Dropdown -->
+              <div class="draw-control-box">
+                <span class="draw-lbl">SELECT PLAYER MANUALLY</span>
+                <select class="draw-select-dropdown" id="manual-player-select" onchange="handleManualPlayerSelection(this)">
+                  <!-- Generated dynamically by JS -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Draw Status Count Indicators (Always Visible) -->
+            <div class="draw-status-badges-row">
+              <span class="draw-badge available" id="badge-count-available">🟢 AVAILABLE: 0</span>
+              <span class="draw-badge unsold" id="badge-count-unsold">🟡 UNSOLD: 0</span>
+              <span class="draw-badge sold" id="badge-count-sold">🔴 SOLD: 0</span>
+            </div>
+          </div>
+          
+          <!-- 2. CURRENT BID DISPLAY + CONTROLS -->
+          <div class="auction-top-section">
+            
+            <!-- Left: CURRENT BID CARD -->
+            <div class="current-bid-display-card" id="active-bid-display-card">
+              <!-- Rendered dynamically by JS -->
+            </div>
+
+            <!-- Right: AUCTION STAT CONTROL BUTTONS -->
+            <div class="control-buttons-card" id="active-controls-area">
+              <!-- Rendered dynamically by JS -->
+            </div>
+
+          </div>
+
+          <!-- 3. PLACE BIDS — 8 TEAM CARDS (ALWAYS VISIBLE) -->
+          <div class="middle-section-title">PLACE BIDS</div>
+          <div class="team-bid-grid" id="auction-team-bid-grid">
+            <!-- Rendered dynamically by JS -->
+          </div>
+
+          <!-- 4. BOTTOM STATUS BAR -->
+          <div class="bottom-status-bar" id="bottom-status-bar-counters">
+            <!-- Rendered dynamically by JS -->
+          </div>
+
+        </div>
+
+        <!-- Right Sidebar (32%, Sticky) -->
+        <div class="auction-right-col">
+          
+          <!-- Card 1: Bid History Log -->
+          <div class="sidebar-card">
+            <div class="sidebar-section-header">
+              <span class="sidebar-title-text">🕐 BID HISTORY</span>
+              <span class="sidebar-badge-gold" id="history-bid-badge">0 BIDS</span>
+            </div>
+            <div class="bid-history-list-wrapper" id="auction-bid-history-list">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Card 2: Team Budgets & Progress bars -->
+          <div class="sidebar-card">
+            <div class="sidebar-section-header">
+              <span class="sidebar-title-text">📊 TEAM BUDGETS</span>
+            </div>
+            <div class="budget-tracker-wrapper" id="auction-budget-tracker-list">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB: SQUADS VIEW ── -->
+    <div id="auction-tab-content-squads" class="auction-tab-panel" style="display: none;">
+      <div class="squads-tab-layout" id="auction-squads-grid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+
+    <!-- ── TAB: PLAYERS POOL ── -->
+    <div id="auction-tab-content-pool" class="auction-tab-panel" style="display: none;">
+      <div class="players-pool-header-row">
+        <h2 class="players-pool-title" id="players-pool-title-text">PLAYERS POOL (69)</h2>
+        <div class="players-pool-filters">
+          <input type="text" id="player-search-input" class="input-field players-pool-search-input" placeholder="SEARCH PLAYER NAME" oninput="filterPlayersPool()">
+          <button class="btn-filter-tag active" id="btn-filter-all" onclick="filterPlayersByRole('ALL')">ALL</button>
+          <button class="btn-filter-tag" id="btn-filter-wk" onclick="filterPlayersByRole('WICKET KEEPER')">WICKET KEEPER</button>
+          <button class="btn-filter-tag" id="btn-filter-ar" onclick="filterPlayersByRole('ALL ROUNDER')">ALL ROUNDER</button>
+        </div>
+      </div>
+      <div class="card-grid" id="auction-players-pool-grid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       SCREEN 4: OWNER DASHBOARD
+       ========================================================== -->
+  <div id="screen-dashboard" class="screen" style="display: none;">
+    <div class="dashboard-screen">
+      
+      <!-- Team switcher row (8 franchises) -->
+      <div class="dash-team-switcher-row" id="dash-team-selector">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Hero Card for active franchise -->
+      <div id="dash-team-hero">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Summary count cards -->
+      <div class="dash-summary-row" id="dash-team-stats-row">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Dashboard Subtabs -->
+      <div class="dash-subtabs-switcher">
+        <button class="dash-subtab-btn" id="btn-dash-tab-squad" onclick="switchDashboardTab('squad')">SQUAD</button>
+        <button class="dash-subtab-btn" id="btn-dash-tab-roles" onclick="switchDashboardTab('roles')">ROLES</button>
+        <button class="dash-subtab-btn" id="btn-dash-tab-compare" onclick="switchDashboardTab('compare')">COMPARE</button>
+      </div>
+
+      <!-- Tab Panel: Squad List Table -->
+      <div id="dash-tab-panel-squad" class="dash-tab-panel" style="display: none;">
+        <div class="dash-squad-table-card">
+          <table class="dash-squad-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">#</th>
+                <th>PLAYER NAME</th>
+                <th>ROLE</th>
+                <th style="text-align: right;">POINTS PAID</th>
+              </tr>
+            </thead>
+            <tbody id="dash-squad-table-body">
+              <!-- Generated dynamically by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab Panel: Roles Breakdown Cards -->
+      <div id="dash-tab-panel-roles" class="dash-tab-panel" style="display: none;">
+        <div class="dash-roles-row" id="dash-roles-container">
+          <!-- Generated dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Tab Panel: Bar comparison of budgets spent -->
+      <div id="dash-tab-panel-compare" class="dash-tab-panel" style="display: none;">
+        <div class="dash-compare-wrapper">
+          <div class="dash-compare-title">ALL TEAMS — POINTS SPENT</div>
+          <div id="dash-compare-container">
+            <!-- Generated dynamically by JS -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       SCREEN 5: ADMIN PANEL
+       ========================================================== -->
+  <div id="screen-admin" class="screen" style="display: none;">
+    <div class="admin-screen">
+      
+      <!-- 1. Password Auth Gate -->
+      <div id="admin-auth-gate" class="admin-auth-container">
+        <div class="admin-auth-card">
+          <div class="admin-auth-icon">⚙</div>
+          <h2 class="admin-auth-title">ADMIN ACCESS</h2>
+          <div class="admin-auth-subtitle">RAJPUR NIGHT PREMIER LEAGUE</div>
+          <div class="admin-auth-form">
+            <input type="password" id="admin-pass-input" class="input-field" placeholder="ENTER ADMIN PASSWORD" onkeydown="if(event.key==='Enter') verifyAdminLogin()">
+            <button class="btn-primary" onclick="verifyAdminLogin()">LOGIN →</button>
+          </div>
+          <div id="admin-auth-error" class="admin-auth-error-msg" style="display: none;">
+            Incorrect password. Try again.
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Authenticated Admin Console -->
+      <div id="admin-dashboard-panel" class="admin-main-panel" style="display: none;">
+        <div class="admin-header-row">
+          <h2 class="admin-panel-title">ADMINISTRATIVE CONSOLE</h2>
+          <button class="btn-ghost" onclick="logoutAdmin()">[ LOGOUT ]</button>
+        </div>
+
+        <div class="admin-tabs-switcher">
+          <button class="admin-tab-btn" id="btn-admin-tab-stats" onclick="switchAdminTab('stats')">AUCTION STATS</button>
+          <button class="admin-tab-btn" id="btn-admin-tab-teams" onclick="switchAdminTab('teams')">TEAMS OVERVIEW</button>
+        </div>
+
+        <!-- Tab: Stats Metrics & Logs -->
+        <div id="admin-tab-panel-stats" class="admin-tab-panel" style="display: none;">
+          <!-- 4 Stats Cards Row -->
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <div class="admin-stat-val" id="admin-stat-sold-players">0</div>
+              <div class="admin-stat-lbl">Players Sold</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-val" id="admin-stat-unsold-players">0</div>
+              <div class="admin-stat-lbl">Players Unsold</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-val" id="admin-stat-total-spent">0 POINTS</div>
+              <div class="admin-stat-lbl">Total POINTS Spent</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="admin-stat-val" id="admin-stat-highest-bid">0 POINTS</div>
+              <div class="admin-stat-lbl">Highest Bid (POINTS)</div>
+            </div>
+          </div>
+
+          <!-- Draw Metrics Row -->
+          <div class="admin-sales-log-card" style="margin-bottom: 24px;">
+            <div class="admin-sales-log-title">DIGITAL DRAW METRICS</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+              <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                <div style="font-size: 24px; font-weight: 900; color: var(--gold);" id="admin-stat-draws-made">0</div>
+                <div style="font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 4px;">Total Draws Made</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.02); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                <div style="font-size: 24px; font-weight: 900; color: var(--orange);" id="admin-stat-recalls-made">0</div>
+                <div style="font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 4px;">Unsold Recalls Drawn</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sales Logs -->
+          <div class="admin-sales-log-card">
+            <div class="admin-sales-log-title">SOLD PLAYERS LOG</div>
+            <div class="admin-sales-table-wrapper">
+              <table class="admin-sales-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>PLAYER NAME</th>
+                    <th>ROLE</th>
+                    <th>TEAM</th>
+                    <th style="text-align: right;">SOLD FOR POINTS</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-sales-log-body">
+                  <!-- Generated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Team Detailed Overviews -->
+        <div id="admin-tab-panel-teams" class="admin-tab-panel" style="display: none;">
+          <div class="admin-teams-grid" id="admin-teams-overview-list">
+            <!-- Generated dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Danger zone full reset -->
+        <div class="admin-danger-zone">
+          <div>
+            <h4 class="admin-danger-title">⚙ Reset Database</h4>
+            <p class="admin-danger-desc">
+              Restoring the system will reset all team budgets to 1,00,000 POINTS, wipe active bidding, erase squads, and place all 69 players back into the available pool.
+            </p>
+          </div>
+          <button class="btn-admin-reset" onclick="resetEntireAuction()">RESET AUCTION</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================
+       FULL SCREEN TRANSITIONAL PORTALS / OVERLAYS
+       ========================================================== -->
+       
+  <!-- SOLD Overlay (2.8s Display) -->
+  <div id="overlay-sold" class="overlay-container">
+    <div class="overlay-content-center">
+      <div class="overlay-icon-gavel">🔨</div>
+      <div class="overlay-stamp-sold">SOLD!</div>
+      <div class="overlay-player-name" id="overlay-sold-player-name">PLAYER NAME</div>
+      <div class="overlay-team-lbl">TO TEAM</div>
+      <div class="overlay-team-val" id="overlay-sold-team-name">TEAM NAME</div>
+      <div class="overlay-price-lbl">FOR AMOUNT</div>
+      <div class="overlay-price-val" id="overlay-sold-price-val">0 POINTS</div>
+    </div>
+  </div>
+
+  <!-- UNSOLD Overlay (2s Display) -->
+  <div id="overlay-unsold" class="overlay-container">
+    <div class="overlay-content-center">
+      <div class="overlay-icon-x">❌</div>
+      <div class="overlay-stamp-unsold">UNSOLD</div>
+      <div class="overlay-player-name" id="overlay-unsold-player-name">PLAYER NAME</div>
+      <p class="overlay-unsold-recall-note">Player added to Unsold Draw Pool</p>
+    </div>
+  </div>
+
+  <!-- DIGITAL CHIT DRAW SYSTEM OVERLAY (3s Animation Engine) -->
+  <div id="overlay-draw" class="draw-overlay">
+    
+    <!-- Close Portal button -->
+    <button class="draw-overlay-close-btn" id="btn-close-draw-overlay" onclick="closeDrawOverlay()">✕</button>
+
+    <!-- Stadium Beam Lights radiating from top center -->
+    <div class="beam beam-1"></div>
+    <div class="beam beam-2"></div>
+    <div class="beam beam-3"></div>
+    <div class="beam beam-4"></div>
+
+    <!-- White flashing overlay for dramatic transitions -->
+    <div class="draw-flash-screen" id="draw-flash-effect"></div>
+
+    <!-- 1. Rapid Name Cycling Stage -->
+    <div class="draw-anim-container" id="draw-anim-stage">
+      <!-- Spinning Cricket ball detailing -->
+      <div class="cricket-ball" id="anim-cricket-ball"></div>
+      <div class="drawing-lbl-text">DRAWING PLAYER...</div>
+      
+      <!-- Rapid flasher cycle -->
+      <div class="name-cycling-box">
+        <span class="name-cycling-val" id="draw-cycling-name">UPEN PATEL</span>
+      </div>
+    </div>
+
+    <!-- 2. Final Selected Player Reveal Stage -->
+    <div class="reveal-card-container" id="draw-reveal-stage">
+      <div class="reveal-card" id="anim-reveal-card">
+        <div class="reveal-card-top-lbl">⭐ PLAYER SELECTED ⭐</div>
+        
+        <!-- Initials Circle -->
+        <div class="reveal-card-avatar" id="reveal-player-avatar">UP</div>
+        
+        <!-- Name & Roles details -->
+        <h2 class="reveal-card-name" id="reveal-player-name">UPEN PATEL</h2>
+        <div class="reveal-card-badge-row" id="reveal-player-role-badge">
+          <!-- Role Pill -->
+        </div>
+
+        <div class="reveal-card-info-table">
+          <div class="reveal-card-info-row">
+            <span class="reveal-card-lbl">BASE PRICE</span>
+            <span class="reveal-card-val-gold">2,000 POINTS</span>
+          </div>
+          <div class="reveal-card-info-row">
+            <span class="reveal-card-lbl">STATUS</span>
+            <span class="reveal-card-val" id="reveal-player-status-lbl">AVAILABLE</span>
+          </div>
+        </div>
+
+        <!-- Navigation triggers -->
+        <div class="reveal-card-buttons-container">
+          <button class="btn-reveal-start" onclick="confirmRevealStartBidding()">▶ START BIDDING</button>
+          <button class="btn-reveal-skip" onclick="closeDrawOverlay()">✕ SKIP THIS PLAYER</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Data configuration bootstrap & Javascript core logic -->
+  <script src="data/players.js"></script>
+  <script src="data/teams.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
